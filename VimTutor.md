@@ -1,0 +1,711 @@
+# The Very Basics
+
+### Introduction
+
+1. What is Vim?
+    - Vim stands for "**Vi Improved**". It's a clone of the text
+    editor "vi".
+    - Vim is included as "vi" with most UNIX systems and with Apple OS X.
+2. Why Vim?
+    - Vim is free and open source. It is also a charityware that gives
+    support to poor children in Uganda!
+    - Vim is available for many platforms. Vim has a graphic user
+    interface, with menus and support for the mouse, while it also
+    supports textmode in terminals, which is perfect for remote
+    access/administration (like Quest).
+    - Vim is perfect for programming. Vim supports all great features
+    for code editors: auto-completion, syntax highlighting, screen
+    split, and so on.
+    - Vim is highly configurable. With some extra plugins, it works
+    just like an IDE (Integrated Development Environment, such as
+    visual studio), but much faster!
+
+### Different Modes in Vim
+
+One of the most important concepts in Vim is modes. This is the major
+difference between Vim and other text editors like Notepad in Windows
+and gedit in Linux. Here is a short overview of each mode available
+in vim:
+
+- Normal mode: For navigation and manipulation of text. This is the
+default mode when you start Vim. Press `ESC` to exit back to normal
+mode from other modes.
+- Insert mode: For inserting new text. Insert mode can be reached in
+several ways, e.g., pressing `i` when in normal mode.
+- Command-line mode: For entering editor commands, such as help, search,
+ save, quit. Press `:` when in normal mode to enter command-line mode.
+- Visual mode: For navigation and manipulation of text selections.
+This mode allows you to perform most normal mode commands, and a few extra
+others, on selected (i.e. highlighted) text. Press `v` when in normal
+mode to enter visual mode.
+
+**Example I:** Navigation in Vim with `h, j, k, l` or arrow keys.
+
+In Vim normal mode, commands `h`, `j`, `k`, `l` are used to move cursor
+left, down, up or right. Arrow keys can also be used for the same purpose.
+
+- Open *introduction.txt* using vim from the terminal
+```bash
+vim introduction.txt
+```
+- Make sure you are in normal mode by hitting `ESC`.
+- Press `h`, `j`, `k`, `l` or arrows to move your cursor around until
+you feel comfortable with that.
+
+\
+**Example II:** Insert text in Line 2 of *introduction.txt*.
+
+- Open *introduction.txt* and make sure you are in normal mode by
+hitting `ESC`.
+- Navigate to Line 2 (empty) with movement or arrow keys.
+- Press `i`, and you should notice the bottom left shows "-- INSERT --",
+which indicates you have switched to insert mode. Now you can type new
+text as you like.
+- Exit back to normal mode by hitting `ESC`. Leave it open for next
+example.
+
+Command `i` is used to insert text right before the cursor. There are
+many other similar commands that allow you to switch to insert mode,
+but in different positions. E.g.,
+
+- Command `a` is used to insert text AFTER the cursor.
+- Command `A` is used to insert text after the end of the line.
+- Command `o` is used to open a line BELOW the cursor and start insert
+mode.
+- Command `O` is used to open a line ABOVE the cursor.
+
+You can also try them in Example II.
+
+\
+**Example III:** Quit with/without saving in Vim
+
+- In the opened *introduction.txt*, type `:q!` and hit `ENTER/RETURN` to exit
+WITHOUT saving the changes.
+- Reopen *introduction.txt*, insert some text with commands `o` or `a`.
+Type `:wq` and hit `ENTER/RETURN` to exit WITH saving the changes. `w`
+is short for "write" and `q` is short for "quit".
+- There are two other save and quit methods while a file is open: (i) When in
+normal mode type `ZZ` (i.e. `SHIFT+z+z`). (ii) Type `:` to switch to
+command-line mode from normal mode then type `x` and hit `ENTER/RETURN`.
+
+--------------
+
+# More on Text Editing
+
+Let's discuss about Vim text edit techniques in details. For these
+exercises we will use *editing.txt*.
+
+### 1. Deletion Command
+
+Command `x` is used to delete the character under the cursor.
+
+**Example I:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example I. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your cursor to the character you want to delete, hit `x`
+- Repeat until all lines marked by --> are corrected.
+
+A **count** can be inserted before the motion to delete more. E.g., `2x`
+is used to delete two characters at one time.
+
+Command `d` is also for deletion. It can be combined with a motion
+command. E.g. `dw` is used to delete a word, and `d$` is used to delete
+to the end of the line.
+
+\
+**Example II:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example II. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your cursor to the beginning of the word you want to delete,
+hit `dw`.
+- Repeat until all lines marked by --> are corrected.
+
+\
+**Example III:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example III. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your cursor to character "&", hit `d$`.
+- Repeat until all lines marked by --> are corrected.
+
+A **count** can be inserted before the motion to delete more. E.g.,
+`d2w` is used to delete two words at one time.
+
+\
+**Example IV:** Delete all UPPERCASE words marked by -->.
+
+- Open *editing.txt* and navigate to Example IV. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your the first "MEOW", hit `d3w` to delete "MEOW MEOW MEOW".
+- Repeat until all lines marked by --> are corrected.
+
+In addition to those mentioned above, command `dd` can be used to delete
+ a whole line. Note here to delete multiple lines with count, use `3dd`,
+ rather than `d3d`.
+
+\
+**Example V:** Delete all lines marked by -->
+
+- Open *editing.txt* and navigate to Example V. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your the cursor to anywhere of a line marked by -->, and hit `dd`
+- Repeat until all lines marked by --> are deleted. You can also try
+use `3dd` to delete three lines together.
+
+### 2. Undo Command
+
+To undo your last command, use command `u`.
+
+**Example VI:** Correct the text lines marked by -->, then undo the
+correction.
+
+- Open *editing.txt* and navigate to Example VI. Make sure you are in
+normal mode by hitting `ESC`.
+- Use command `x` to correct the line marked by -->.
+- Now hit `u`, it will undo your last deletion. Hit `u` again, it will
+redo your second last deletion.
+
+### 3. Put Command
+
+The text deleted last time is stored and can be put back with command
+`p`. This works just like cut & paste in other editors like notepad.
+
+**Example VII:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example VII. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your the cursor to the beginning of word "some", and hit `dw`.
+- Move your the cursor to the space after "are", and hit `p`. You
+should have moved word some to the correct position.
+- Repeat until all lines marked by --> are corrected.
+
+### 4. Replace Command
+
+Command `r` is to replace one character at the cursor with new character
+you input. The command capital `R` is used to replace more than one
+character.
+
+**Example VIII:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example VIII. Make sure you are in
+normal mode by hitting `ESC`.
+- Move the cursor to the character "u" in word "sume", and hit
+`ro`. You should have corrected character "u" by "o". It also
+automatically switches back to normal mode.
+- Move your the cursor to the character "q" in word "misqhdsi", and hit
+`Rtakes`. You should have corrected the word "misqhdsi" by "mistakes". Hit
+`ESC` to switch back to normal mode.
+
+### 5. Change Command
+
+The change command `c` works very similarly as command `d`. It removes
+the text corresponding to the motion, and switches you to insert mode.
+E.g., command `cw` removes the word and switches to insert mode so that
+you can type anything you wish to replace the original content.
+
+**Example IX:** Correct the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example IX. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your the cursor to the beginning of word "abcd", and hit `cw`.
+Type the correct word "some" and hit `ESC` to switch back to normal mode.
+- Move your the cursor to character "&", and hit `c$`. Type the correct
+content and hit `ESC` to switch back to normal mode.
+
+### 6. Visual Mode
+
+Command `v` is used to select text visually. After hit `v`, you will be
+switched to visual mode, and by moving cursor you can change the range
+of text being selected. The visually selected text can be copied using yank
+command `y` and pasted with command `p`.
+
+**Example X:** Complete the text lines marked by -->.
+
+- Open *editing.txt* and navigate to Example X. Make sure you are in
+normal mode by hitting `ESC`.
+- Move your the cursor to the beginning of word "are", and hit `v`.
+Now you are switched to visual mode. Navigate your cursor to the end of
+line to select the text you would like to copy.
+- Hit `y` to copy, and you will be automatically switched back to normal
+mode.
+- Navigate to the position you want to paste, hit `p`.
+
+Command `y` can be also used alone similar to `d` or `c` by combining it
+with motion like `w` and `$`. E.g., you can use `y$` in the example above.
+You can also use `yy` to copy an entire line.
+
+--------------
+
+# More on Navigation and Search
+Let's discuss some fast navigation techniques between lines and pattern
+search methods in Vim. For these exercises we will use *animals.txt*.
+
+#### 1. Moving to Start and End of the File
+
+**Example I:** Move to start/end of the file in normal mode
+- Switch to normal mode by hitting `ESC`. Type `G` (i.e. SHIFT+g) to move
+to the last line of the file
+- Switch to normal mode by hitting `ESC`. Type `gg` to move to the first
+line of the file
+
+\
+**Example II:** Move to start/end of the file in command-line mode
+- Switch to command-line mode by hitting `ESC` and then typing `:`. Type
+`$` and hit `ENTER/RETURN` to move to the last line of the file
+- Hit `ESC` then type `:` to switch to command-line mode. Type `0` and hit
+`ENTER/RETURN` to move to the beginning of the file
+
+#### 2. Moving to an Arbitrary Line
+
+**Example III:** Move to a line using the line number in normal mode
+- Hit `ESC`, type the number of the line, say 14, and then type `G` (i.e.
+`SHIFT+g`)
+
+\
+**Example IV:** Move to a line using the line number in command-line mode
+- Hit `ESC`, type `:`, then type the number of the line, say 23, hit
+`ENTER/RETURN`
+
+\
+**Example V:** Let's make sure we moved to 23<sup>rd</sup> line by showing
+the line numbers before each line.
+- Hit `ESC`, type `:set nu` (or equally `:set number`), hit `ENTER/RETURN`
+- Type `:set nonu` (or equally `:set nonumber`) and hit `ENTER/RETURN` to
+hide the line numbers
+
+#### 3. Using Marks
+A mark is location identifier which allows you to return to the same
+location later. When you set a mark there is no visible indication on
+the file. Each buffer (or practically the file) has its own default
+marks (i.e. lowercase letters from a to z). The marks are persistent for
+the files as long as you retain .viminfo file which includes the metadata
+about marks, command-line history, search strings, buffers etc.
+
+**Example VI:** Let's set mark "a" on the first comma (,) of the 9<sup>th</sup>
+line in *animals.txt*. After setting "a" mark for this location move to
+the end of the file. Using the mark, return to original location.
+- Hit `ESC`, type `9G` (navigate to line 9) and move to the
+first comma by hitting `l` key (or right arrow key)
+- Type `ma` (while on the normal mode) to set the mark "a" to the
+cursor location.
+- Type `G` to move to the last line of the file
+- Type `` `a `` to move back to the mark's position
+- If you type `'a`, this will take you to the beginning of line on which
+mark "a" has been set
+
+\
+**Example VII:** Set mark "c" on the second comma (,) of the 20<sup>th</sup>
+line in *animals.txt*.
+- Hit `ESC`, type `20G` (navigate to line 20) and move to the
+second comma by hitting `l` key (or right arrow key)
+- Type `mc` (while on the normal mode) to set the mark "c" to the
+cursor location.
+
+\
+**Example VIII:** Now we have to marks "a" and "c", it will be useful to
+know how to review current marks and delete them if necessary.
+- Hit `ESC`, type `:` to switch to command-line mode
+- Type `marks` while in command-line mode and hit `ENTER/RETURN`. This will
+list all the default and user defined marks.
+- Hit `ESC`, type `:` to switch to command-line mode and type `delmarks a`
+to delete mark "a"
+
+
+#### 4. Pattern Search
+Another strong suite of Vim lies in its pattern search functionality. It
+is possible to search for single pattern, multiple patterns,
+whole words, patterns that are in specific order, duplicate words etc.
+
+**Example IX:** Find the first *bear* pattern in *animals.txt* file
+from the normal mode.
+- Hit `ESC` to switch to normal mode then type `/bear` and hit `ENTER/RETURN`
+
+Forward slash, `/`, is used to search the trailing pattern, in this case
+"bear". Consequently, `/bear` will find the first matching pattern after
+the cursor's current location and move the cursor to the beginning of
+the pattern.
+
+\
+**Example X:** Find the next *bear* pattern in *animals.txt*
+file from the normal mode.
+- Hit `ESC` to switch to normal mode then hit `n`
+
+Each time you hit `n` the next matching pattern will be found and the
+cursor will move to that location.
+
+\
+**Example XI:** Find the previous *bear* pattern in *animals.txt*
+file from the normal mode.
+- Hit `ESC` to switch to normal mode then hit `N` (i.e. `SHIFT+n`)
+
+Each time you hit `N` the previous matching pattern will be found and
+the cursor will move to that location.
+
+\
+**Example XII:** Find the pattern *badger* only if it is a whole word
+in *animals.txt* file from the normal mode.
+- Hit `ESC` to switch to normal mode
+- Type `/` first before the pattern to be searched
+- Type `\<badger\>` and hit `ENTER/RETURN`
+
+Since we are looking for a whole word, simply searching for "badger"
+with `/badger` will not be useful as it will find any pattern containing
+"badger" such as "honeybadger". To search whole words, we should use
+`\<pattern\>` where `\<` represents the beginning of the word, and
+`\>` represents the end of the word.
+
+\
+**Example XIII:** Find the next line containing *bear* pattern in
+*animals.txt* file from the command-line mode.
+- Hit `ESC` and type `:` to go to command-line mode
+- Type `/bear` and hit `ENTER/RETURN`
+
+#### 5. Text Substitution
+Many modern document and text editors provide functionality for finding
+and replacing strings. Vim is no exception and it offers many additional
+features.
+
+The substitute operation can be done in command-line mode using `s` (short
+for substitute). The general format of a substitute is `:s/foo/bar` where
+*foo* is the pattern to be substituted by *bar*.
+
+\
+**Example XIV:** Replace the first instance of "rabbit" with "squirrel"
+in the 2<sup>nd</sup> line of *animals.txt* using substitute. Save and exit.
+- First let's create a backup file i.e. *animals_bckp.txt*
+for *animals.txt*, then open *animals.txt* using vim from the terminal.
+```bash
+cp animals.txt animals_bckp.txt
+vim animals.txt
+```
+- Hit `ESC` and go to command-line mode with typing ":"
+- Type `2` to go to the second line
+- Type `:` to start the command-line mode and write `s/rabbit/squirrel`
+and hit `ENTER/RETURN`
+- Type `:` to start the command-line then type `wq` and hit `ENTER/RETURN`
+
+On the command-line mode we issued two distinct directives, `s/rabbit/squirrel`
+and `wq`. Instead of doing the substitution and write&quit in two steps
+we could have stack the commands using the pipe sign `|` which acts as
+an "and".
+
+- Type `:` to start the command-line mode and write `s/rabbit/squirrel/ | wq`
+and hit `ENTER/RETURN`
+- Typing `:s/rabbit/squirrel/ | w | q` and hitting `ENTER/RETURN` will
+accomplish the same task
+
+\
+**Example XV:** Replace the first instance of "rabbit" with "squirrel"
+in all the lines of *animals.txt* using substitute. Save and exit.
+
+- Open *animals.txt* using vim from the terminal
+```bash
+vim animals.txt
+```
+- Hit `ESC` and type `:` go to command-line mode
+- Write `%s/rabbit/squirrel/` and hit `ENTER/RETURN`
+- Type `:` to start the command-line then type `x` and hit `ENTER/RETURN`
+
+`%` indicates that whole buffer (practically whole document) will be
+considered for substitution.
+<p>
+
+\
+**Example XVI:** Replace all instances of "fox" with "wolf"
+in all the lines of *animals.txt* using substitute. Save and exit.
+
+- Open *animals.txt* using vim from the terminal
+```bash
+vim animals.txt
+```
+- Hit `ESC` and type `:` go to command-line mode
+- Write `%s/fox/wolf/g` and hit `ENTER/RETURN`
+- Hit `ESC` to switch to normal mode and `ZZ`
+
+Here `g` is short for global and it is used to replace all instances of
+the pattern in a line.
+
+\
+**Example XVII:** Replace all instances of "wolf" with "fox" from line 20
+ to 30 in *animals.txt* using substitute. Save and exit.
+
+- Open *animals.txt* using vim from the terminal
+```bash
+vim animals.txt
+```
+- Hit `ESC` and type `:` go to command-line mode
+- Write `20,30s/wolf/fox/g` and hit `ENTER/RETURN`
+- Hit `ESC` to switch to normal mode and type `ZZ`
+
+`20,30` before `s/wolf/fox/g` indicates the range of lines to be
+considered for substitution and it is inclusive.
+
+\
+**Example XVIII:** Replace all instances of "badger" with "Tasmanian devil"
+in all the line of *animals.txt* using substitute but require
+confirmation before the change. Save and exit. Make
+sure not to substitute honeybadger.
+
+- Open *animals.txt* using vim from the terminal
+```bash
+vim animals.txt
+```
+- Hit `ESC` and type `:` go to command-line mode
+- Write `%s/\<badger\>/Tasmanian devil/gc` and hit `ENTER/RETURN`
+- Hit `ESC` to switch to normal mode and type `ZZ`
+
+`\<badger\>` searchers for only the whole words exactly matching badger.
+`c` at the end is used for confirmation request.
+
+\
+**Example XIX:** Replace all instances of "Tasmanian devil" with "badger"
+in all the line of *animals.txt* using substitute. Make the search case
+insensitive. Save and exit.
+
+- Open *animals.txt* using vim from the terminal
+```bash
+vim animals.txt
+```
+- Hit `ESC` and type `:` go to command-line mode
+- Write `%s/tasmanian devil/badger/gi` and hit `ENTER/RETURN`
+- Hit `ESC` to switch to normal mode and type `ZZ` (i.e. `SHIFT+z+z`)
+
+`i` at the end is used to make the search case insensitive.
+
+#### 6. Global Operations
+The global command,`:g`, is used to execute an operation throughout
+the document.
+
+**Example XX:** Delete all the lines having the pattern "goat" from
+*animals.txt*. After completing the task, undo the change.
+- Hit `ESC` and type `:` go to command-line mode
+- Write `g/goat/d` and hit `ENTER/RETURN`. Can you find any lines with
+"goat" pattern?
+- Hit `ESC` then `u` to undo the deletion.
+The `d` in `g/goat/d` indicates a deletion operation. Thus the whole
+command means do the deletion for all lines that have "goat" pattern.
+
+\
+**Example XXI:** Delete all the lines that do not have the pattern
+"goat" from *animals.txt*. After completing the task, undo the change.
+- Hit `ESC` and type `:` go to command-line mode
+- Write `g!/goat/d` and hit `ENTER/RETURN`. Can you find any lines
+without "goat" pattern?
+- Hit `ESC` then `u` to undo the deletion.
+The exclamation mark, `!`, in `g!/goat/d` refers to **not**. Thus the whole
+command means do the deletion for all lines that do not have "goat" pattern.
+
+
+--------------
+
+# More on Editing Text From Bash Shell (no UI)
+
+In cases where you need to repeat some specific tasks in editing your
+files many times, opening the UI -user interface- and carrying out the
+tasks will become inefficient. Furthermore, if you are submitting
+a workflow for batch processing, UI is impractical.
+
+For such tasks, Vim can be used from your bash command line. It is
+possible to pass directives to Vim from terminal.
+
+**Example I:** Replace all instances of "wolf" with "fox"
+in all the lines of *animals.txt* using Vim's substitute function
+without starting the UI.
+
+- In your bash terminal type the following:
+```bash
+vim animals.txt -c '%s/wolf/fox/g | wq'
+```
+
+You may recognize `%s/wolf/fox/g` and `wq` commands as we used them
+to substitute all instances of "wolf" with "fox" in *animals.txt* and
+save&quit the file respectively when in command-line mode. The flag "-c"
+executes the following command as if the vim is operating in command-line
+mode.
+
+\
+**Example II:** Prepare a vim script (say *operations.vim*) that includes
+the commands to be applied on the *animals.txt*. The commands should
+replace all instances of "bear" with "giraffe" in all the lines of
+*animals.txt*, save the file and exit.
+
+- First create the file *operations.vim*
+```bash
+vim operations.vim
+```
+- Switch to insert mode by hitting `i`
+- Type `:%s/bear/giraffe/g` on the first line of *operations.vim*
+- Type `ZZ` on the second line of the *operations.vim*
+- Switch to normal mode by hitting `ESC` and save&quit by hitting `ZZ`
+- Run the command below in the terminal:
+```bash
+vim animals.txt -s operations.vim
+```
+
+The flag "-s" reads normal mode commands from a script file and applies
+them to the input file
+
+--------------
+
+# Split Windows for Opening Multiple Files
+It is possible to open multiple files spreading horizontally or
+vertically in a single UI window. This can be achieved while you are
+starting the UI or from within the UI.
+
+**Example I:** Open the two files *animals.txt* and *editing.txt* in a
+split windows oriented horizontally, then quit all without saving.
+- Issue the following command on your terminal
+```bash
+vim -o animals.txt editing.txt
+```
+- Once the split windows are opened switch to command-line mode by
+typing `:`
+- Type `q!` and hit `ENTER/RETURN` to exit the pane you are on. Then repeat
+the same to quit the last file.
+- To quit from all panes instantaneously you could type `:qall!` and
+hit `ENTER/RETURN`
+
+\
+**Example II:** Open the two files *animals.txt* and *editing.txt* in a
+split windows oriented vertically, then quit all without saving.
+- Issue the following command on your terminal
+```bash
+vim -O animals.txt editing.txt
+```
+- Once the split windows are opened switch to command-line mode by
+typing `:`
+- Type `qall!` and hit `ENTER/RETURN`
+
+\
+**Example III** Open the *animals.txt* first then open *editing.txt* by
+splitting the window horizontally. Finally open *introduction.txt* in a
+vertically split pane. Move the cursor from one pane to another.
+- Issue the following command on your terminal
+```bash
+vim animals.txt
+```
+- Switch to command-line mode by typing `:`
+- Type `split editing.txt`
+- Switch to command-line mode by typing `:`
+- Type `vsplit introduction.txt`
+- Switch to normal mode by hitting `ESC`
+- While holding CTRL hit `w` twice (i.e. `CTRL+w+w`) which will move the
+cursor to the next pane
+- Type `:qall!` to quit all windows
+
+
+--------------
+
+# Running Shell Commands from Vim
+While you are working on your text file with Vim, you may realize that
+you need some information from your system. Assuming the system is UNIX
+based, you can execute, say, bash commands and obtain the necessary
+information using the Vim command-line mode.
+
+**Example I:** Open *animals.txt* with Vim and without quitting explore
+the current contests of the folder.
+- Issue the following command on your terminal
+```bash
+vim animals.txt
+```
+- Switch to command-line mode by typing `:`
+- Type `!ls` and hit `ENTER/RETURN`
+- Hit `ENTER/RETURN` again to continue Vim
+- Finally quit by typing `:q!`
+The general format to issue a system command from Vim interface is `:!<command>`.
+Note: `:!!` repeats the last command issued
+
+\
+**Example II:** Open Vim interface and export the current contents of the
+folder to this empty document. Save the document as *folder_contents.txt*.
+- Issue the following command on your terminal
+```bash
+vim
+```
+- Switch to command-line mode by typing `:`
+- Type `r !ls` and hit `ENTER/RETURN`
+- Hit `ENTER/RETURN` again to continue Vim
+- Switch to command-line mode by typing `:` and type `w folder_contents.txt`
+
+`r` in `r !ls` is short for read which reads and inputs the result of the
+following expression (in this case `!ls`) in the current buffer below the
+cursor.
+
+\
+**Example III:** Open *animals.txt* with Vim and revert the whole buffer
+on the screen. Save the file and exit.
+HINT: `tac` (i.e. the reverse of `cat`) concatenates and writes files in
+reverse
+- Issue the following command on your terminal
+```bash
+vim animals.txt
+```
+- Switch to command-line mode by typing `:`
+- Type `% !tac` and hit `ENTER/RETURN`
+- Switch to normal mode by hitting `ESC`
+- Type `ZZ` (i.e. `SHIFT+z+z`)
+`%` in `% !tac` defines the range from the beginning to the end of the
+buffer (practically the file). `!tac` is the UNIX command issued from
+vim interface that reversed the buffer.
+
+\
+**Example IV:** Open *animals.txt* with Vim and revert the order of lines
+from 10 to the end of file. Undo the change and quit without saving.
+- Issue the following command on your terminal
+```bash
+vim animals.txt
+```
+- Switch to command-line mode by typing `:`
+- Type `10,$ !tac` and hit `ENTER/RETURN`
+- Switch to normal mode by hitting `ESC` and then `u`
+- Type `:q!` to quit without saving
+
+\
+**Example IV:** Open *helloworld.py* with Vim. Change the duration of
+sleep from 10 seconds to 4 seconds, save the file and run it without
+quitting Vim.
+- Issue the following command on your terminal
+```bash
+vim helloworld.py
+```
+- Move the cursor to line including "sleep(10)"
+- Hit `ESC` to switch to the normal mode
+- Replace "1" with "4" in "sleep(10)" by first moving the cursor over
+1, then hitting `r` and '4' sequentially.
+- Move the cursor over "0" in "sleep(40)" and hit `x` to delete "0".
+- Type `:` to switch to command-line mode
+- Type `w` and hit `ENTER/RETURN` to save the file
+- Type `:` to switch to command-line mode again
+- Type `!python %` and hit `ENTER/RETURN` to run the script
+- Hit `ENTER/RETURN` when the run is finished (you will be prompted) which
+will return the screen to Vim interface.
+
+--------------
+
+# Need More Help?
+Any moment during your Vim session hit `ESC`, type `:help` and hit `ENTER/RETURN`.
+To quit from help page type `:q!`.
+
+You can also specify the help topic by identifying the command that you
+want to learn. During your Vim session, hit `ESC`, type `:help :<command>`
+and hit `ENTER/RETURN`. For instance, if you would like to see more
+information about `substitute` you should write `:help :s` and hit
+`ENTER/RETURN`.
+
+--------------
+
+# Additional Resources
+
+Cheat sheets:
+
+1. [Vim Cheat Sheet](https://vim.rtorr.com/)
+2. [Graphical Cheat Sheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
+3. [A Great Vim Cheat Sheet](http://vimsheet.com/)
+4. [Advanced Vim Cheat Sheet](http://vimsheet.com/advanced.html)
+
+Interactive Online Learning:
+
+1. [VIM Adventures](https://vim-adventures.com/)
+2. [Interactive Vim tutorial](http://www.openvim.com/)
