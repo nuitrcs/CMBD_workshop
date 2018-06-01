@@ -3,8 +3,8 @@
 ### Introduction
 
 1. What is Vim?
-    - Vim stands for "**Vi Improved**". It's a clone of the text
-    editor "vi".
+    - Vim stands for "**Vi Improved**". It's a modified clone of the
+    text editor "vi".
     - Vim is included as "vi" with most UNIX systems and with Apple OS X.
 2. Why Vim?
     - Vim is free and open source. It is also a charityware that gives
@@ -275,45 +275,7 @@ the line numbers before each line.
 - Type `:set nonu` (or equally `:set nonumber`) and hit `ENTER/RETURN` to
 hide the line numbers
 
-#### 3. Using Marks
-A mark is location identifier which allows you to return to the same
-location later. When you set a mark there is no visible indication on
-the file. Each buffer (or practically the file) has its own default
-marks (i.e. lowercase letters from a to z). The marks are persistent for
-the files as long as you retain .viminfo file which includes the metadata
-about marks, command-line history, search strings, buffers etc.
-
-**Example VI:** Let's set mark "a" on the first comma (,) of the 9<sup>th</sup>
-line in *animals.txt*. After setting "a" mark for this location move to
-the end of the file. Using the mark, return to original location.
-- Hit `ESC`, type `9G` (navigate to line 9) and move to the
-first comma by hitting `l` key (or right arrow key)
-- Type `ma` (while on the normal mode) to set the mark "a" to the
-cursor location.
-- Type `G` to move to the last line of the file
-- Type `` `a `` to move back to the mark's position
-- If you type `'a`, this will take you to the beginning of line on which
-mark "a" has been set
-
-\
-**Example VII:** Set mark "c" on the second comma (,) of the 20<sup>th</sup>
-line in *animals.txt*.
-- Hit `ESC`, type `20G` (navigate to line 20) and move to the
-second comma by hitting `l` key (or right arrow key)
-- Type `mc` (while on the normal mode) to set the mark "c" to the
-cursor location.
-
-\
-**Example VIII:** Now we have to marks "a" and "c", it will be useful to
-know how to review current marks and delete them if necessary.
-- Hit `ESC`, type `:` to switch to command-line mode
-- Type `marks` while in command-line mode and hit `ENTER/RETURN`. This will
-list all the default and user defined marks.
-- Hit `ESC`, type `:` to switch to command-line mode and type `delmarks a`
-to delete mark "a"
-
-
-#### 4. Pattern Search
+#### 3. Pattern Search
 Another strong suite of Vim lies in its pattern search functionality. It
 is possible to search for single pattern, multiple patterns,
 whole words, patterns that are in specific order, duplicate words etc.
@@ -497,56 +459,6 @@ without "goat" pattern?
 The exclamation mark, `!`, in `g!/goat/d` refers to **not**. Thus the whole
 command means do the deletion for all lines that do not have "goat" pattern.
 
-
---------------
-
-# More on Editing Text From Bash Shell (no UI)
-
-In cases where you need to repeat some specific tasks in editing your
-files many times, opening the UI -user interface- and carrying out the
-tasks will become inefficient. Furthermore, if you are submitting
-a workflow for batch processing, UI is impractical.
-
-For such tasks, Vim can be used from your bash command line. It is
-possible to pass directives to Vim from terminal.
-
-**Example I:** Replace all instances of "wolf" with "fox"
-in all the lines of *animals.txt* using Vim's substitute function
-without starting the UI.
-
-- In your bash terminal type the following:
-```bash
-vim animals.txt -c '%s/wolf/fox/g | wq'
-```
-
-You may recognize `%s/wolf/fox/g` and `wq` commands as we used them
-to substitute all instances of "wolf" with "fox" in *animals.txt* and
-save&quit the file respectively when in command-line mode. The flag "-c"
-executes the following command as if the vim is operating in command-line
-mode.
-
-\
-**Example II:** Prepare a vim script (say *operations.vim*) that includes
-the commands to be applied on the *animals.txt*. The commands should
-replace all instances of "bear" with "giraffe" in all the lines of
-*animals.txt*, save the file and exit.
-
-- First create the file *operations.vim*
-```bash
-vim operations.vim
-```
-- Switch to insert mode by hitting `i`
-- Type `:%s/bear/giraffe/g` on the first line of *operations.vim*
-- Type `ZZ` on the second line of the *operations.vim*
-- Switch to normal mode by hitting `ESC` and save&quit by hitting `ZZ`
-- Run the command below in the terminal:
-```bash
-vim animals.txt -s operations.vim
-```
-
-The flag "-s" reads normal mode commands from a script file and applies
-them to the input file
-
 --------------
 
 # Split Windows for Opening Multiple Files
@@ -578,110 +490,6 @@ vim -O animals.txt editing.txt
 typing `:`
 - Type `qall!` and hit `ENTER/RETURN`
 
-\
-**Example III** Open the *animals.txt* first then open *editing.txt* by
-splitting the window horizontally. Finally open *introduction.txt* in a
-vertically split pane. Move the cursor from one pane to another.
-- Issue the following command on your terminal
-```bash
-vim animals.txt
-```
-- Switch to command-line mode by typing `:`
-- Type `split editing.txt`
-- Switch to command-line mode by typing `:`
-- Type `vsplit introduction.txt`
-- Switch to normal mode by hitting `ESC`
-- While holding CTRL hit `w` twice (i.e. `CTRL+w+w`) which will move the
-cursor to the next pane
-- Type `:qall!` to quit all windows
-
-
---------------
-
-# Running Shell Commands from Vim
-While you are working on your text file with Vim, you may realize that
-you need some information from your system. Assuming the system is UNIX
-based, you can execute, say, bash commands and obtain the necessary
-information using the Vim command-line mode.
-
-**Example I:** Open *animals.txt* with Vim and without quitting explore
-the current contests of the folder.
-- Issue the following command on your terminal
-```bash
-vim animals.txt
-```
-- Switch to command-line mode by typing `:`
-- Type `!ls` and hit `ENTER/RETURN`
-- Hit `ENTER/RETURN` again to continue Vim
-- Finally quit by typing `:q!`
-The general format to issue a system command from Vim interface is `:!<command>`.
-Note: `:!!` repeats the last command issued
-
-\
-**Example II:** Open Vim interface and export the current contents of the
-folder to this empty document. Save the document as *folder_contents.txt*.
-- Issue the following command on your terminal
-```bash
-vim
-```
-- Switch to command-line mode by typing `:`
-- Type `r !ls` and hit `ENTER/RETURN`
-- Hit `ENTER/RETURN` again to continue Vim
-- Switch to command-line mode by typing `:` and type `w folder_contents.txt`
-
-`r` in `r !ls` is short for read which reads and inputs the result of the
-following expression (in this case `!ls`) in the current buffer below the
-cursor.
-
-\
-**Example III:** Open *animals.txt* with Vim and revert the whole buffer
-on the screen. Save the file and exit.
-HINT: `tac` (i.e. the reverse of `cat`) concatenates and writes files in
-reverse
-- Issue the following command on your terminal
-```bash
-vim animals.txt
-```
-- Switch to command-line mode by typing `:`
-- Type `% !tac` and hit `ENTER/RETURN`
-- Switch to normal mode by hitting `ESC`
-- Type `ZZ` (i.e. `SHIFT+z+z`)
-`%` in `% !tac` defines the range from the beginning to the end of the
-buffer (practically the file). `!tac` is the UNIX command issued from
-vim interface that reversed the buffer.
-
-\
-**Example IV:** Open *animals.txt* with Vim and revert the order of lines
-from 10 to the end of file. Undo the change and quit without saving.
-- Issue the following command on your terminal
-```bash
-vim animals.txt
-```
-- Switch to command-line mode by typing `:`
-- Type `10,$ !tac` and hit `ENTER/RETURN`
-- Switch to normal mode by hitting `ESC` and then `u`
-- Type `:q!` to quit without saving
-
-\
-**Example IV:** Open *helloworld.py* with Vim. Change the duration of
-sleep from 10 seconds to 4 seconds, save the file and run it without
-quitting Vim.
-- Issue the following command on your terminal
-```bash
-vim helloworld.py
-```
-- Move the cursor to line including "sleep(10)"
-- Hit `ESC` to switch to the normal mode
-- Replace "1" with "4" in "sleep(10)" by first moving the cursor over
-1, then hitting `r` and '4' sequentially.
-- Move the cursor over "0" in "sleep(40)" and hit `x` to delete "0".
-- Type `:` to switch to command-line mode
-- Type `w` and hit `ENTER/RETURN` to save the file
-- Type `:` to switch to command-line mode again
-- Type `!python %` and hit `ENTER/RETURN` to run the script
-- Hit `ENTER/RETURN` when the run is finished (you will be prompted) which
-will return the screen to Vim interface.
-
 --------------
 
 # Need More Help?
@@ -709,3 +517,75 @@ Interactive Online Learning:
 
 1. [VIM Adventures](https://vim-adventures.com/)
 2. [Interactive Vim tutorial](http://www.openvim.com/)
+
+--------------
+
+# VIM Text Editor Exercises
+
+**IV.01)** Open "ilikemyname.txt" using VIM editor.
+
+```bash
+vim ilikemyname.txt
+```
+
+**IV.02)** While you are viewing the file, set VIM to
+show line numbers.
+
+```bash
+#-- Go to the command-line mode (hit "esc" then ":") and write set nu, hit enter/return
+```
+
+**IV.03)** Delete 783219th line.
+
+```bash
+#-- Go to the command-line mode (hit "esc" then ":")
+#1- write 783219 and hit enter/return OR write ?783219 and hit enter/return.
+#2- Hit d two times when the cursor is on line 783219
+```
+
+**IV.04)** Undo your deletion.
+
+
+```bash
+#-- Hit "esc" to go to the normal mode and hit "u"
+```
+
+**IV.05)** Only erase the number before YourName on line 783219.
+
+
+```bash
+#-- Two possible option to accomp:
+
+#1- Hit "esc" to switch to the normal mode, move the cursor to the beginning of the
+#number and hit "x" 6 times to erase the number on that line one character at a time
+
+#or
+
+#1- Hit "esc" and "6" and then "x" to erase 6 characters. There are several more ways.
+```
+
+**IV.06)** Go to the last line of the file and enter the text "Last"
+before YourName. Then go to the first line of the file and enter the
+text "First" after YourName.
+
+
+```bash
+#-- Follow the steps below
+
+#1- Hit "esc" and ":" to go to the command-line mode
+#2- Write "$", hit enter/return
+#3- Hit "i" to enter insert mode and type "Last" before YourName
+#4- Hit "esc" and ":" to go to the command-line mode
+#5- Write "0", hit enter/return
+#6- Hit "i" to enter insert mode, move the cursor after YourName and type "First"
+```
+
+
+**IV.07)** Replace all YourName pattern with your first name. Save the file
+and quit.
+
+```bash
+- Hit `ESC` and type `:` go to command-line mode
+- Write `%s/YourName/yourfirstname/` and hit `ENTER/RETURN`
+- Type `:` to start the command-line then type `x` and hit `ENTER/RETURN`
+```
