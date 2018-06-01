@@ -5,7 +5,7 @@ Example I
 
     There are some mistakes in this sentence.
 --> There are somee mistakes inn thiis sentence.
---> There are some mistakkes in this senttence.
+--> There are some mistakkes in this sentttttence.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example II
@@ -13,13 +13,6 @@ Example II
     There are some mistakes in this sentence.
 --> There are some some mistakes in this this sentence.
 --> There are are are some mistakes in this sentence.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example III
-
-    There are some mistakes in this sentence.
---> There are some mistakes in this sentence. &328afhj da823a;jkd
---> There are some mistakes in this sentence. &328dss sss ssfffffffffffa
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example IV
@@ -64,22 +57,6 @@ Example VIII
 Example IX
 
     There are some mistakes in this sentence.
---> There are abcd mistakes in this sentence.
---> There are some &skdjfa;lfjdklajiojiofdkla;dj;sald
+--> There 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example X
-
-    There are some mistakes in this sentence.
---> There
---> There
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example XI
-
-    This is Sentence 3.
-    This is Sentence 1.
-    This is Sentence 2.
-
---> Order the sentences 1-3 in correct order.
-

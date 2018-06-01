@@ -64,18 +64,6 @@ text as you like.
 - Exit back to normal mode by hitting `ESC`. Leave it open for next
 example.
 
-Command `i` is used to insert text right before the cursor. There are
-many other similar commands that allow you to switch to insert mode,
-but in different positions. E.g.,
-
-- Command `a` is used to insert text AFTER the cursor.
-- Command `A` is used to insert text after the end of the line.
-- Command `o` is used to open a line BELOW the cursor and start insert
-mode.
-- Command `O` is used to open a line ABOVE the cursor.
-
-You can also try them in Example II.
-
 \
 **Example III:** Quit with/without saving in Vim
 
@@ -121,17 +109,6 @@ normal mode by hitting `ESC`.
 - Move your cursor to the beginning of the word you want to delete,
 hit `dw`.
 - Repeat until all lines marked by --> are corrected.
-
-\
-**Example III:** Correct the text lines marked by -->.
-
-- Open *editing.txt* and navigate to Example III. Make sure you are in
-normal mode by hitting `ESC`.
-- Move your cursor to character "&", hit `d$`.
-- Repeat until all lines marked by --> are corrected.
-
-A **count** can be inserted before the motion to delete more. E.g.,
-`d2w` is used to delete two words at one time.
 
 \
 **Example IV:** Delete all UPPERCASE words marked by -->.
@@ -198,43 +175,23 @@ automatically switches back to normal mode.
 `Rtakes`. You should have corrected the word "misqhdsi" by "mistakes". Hit
 `ESC` to switch back to normal mode.
 
-### 5. Change Command
+### 5. Copying
 
-The change command `c` works very similarly as command `d`. It removes
-the text corresponding to the motion, and switches you to insert mode.
-E.g., command `cw` removes the word and switches to insert mode so that
-you can type anything you wish to replace the original content.
+Command `y` is used for yanking (copying). It can be used in combination
+with motion like `yw` (copy single word) and `y3w` (copy 3 words)
+You can also use `yy` to copy an entire line. Copied text can be pasted
+with command `p`.
 
-**Example IX:** Correct the text lines marked by -->.
+**Example IX:** Complete the text line marked by -->.
 
 - Open *editing.txt* and navigate to Example IX. Make sure you are in
 normal mode by hitting `ESC`.
-- Move your the cursor to the beginning of word "abcd", and hit `cw`.
-Type the correct word "some" and hit `ESC` to switch back to normal mode.
-- Move your the cursor to character "&", and hit `c$`. Type the correct
-content and hit `ESC` to switch back to normal mode.
-
-### 6. Visual Mode
-
-Command `v` is used to select text visually. After hit `v`, you will be
-switched to visual mode, and by moving cursor you can change the range
-of text being selected. The visually selected text can be copied using yank
-command `y` and pasted with command `p`.
-
-**Example X:** Complete the text lines marked by -->.
-
-- Open *editing.txt* and navigate to Example X. Make sure you are in
-normal mode by hitting `ESC`.
-- Move your the cursor to the beginning of word "are", and hit `v`.
-Now you are switched to visual mode. Navigate your cursor to the end of
-line to select the text you would like to copy.
-- Hit `y` to copy, and you will be automatically switched back to normal
+- Move your the cursor to the beginning of the word "are" in the first sentence.
+- Hit `y6w` to copy, and you will be automatically switched back to normal
 mode.
-- Navigate to the position you want to paste, hit `p`.
+- Navigate to the position you want to paste in the second sentence and
+hit `p`.
 
-Command `y` can be also used alone similar to `d` or `c` by combining it
-with motion like `w` and `$`. E.g., you can use `y$` in the example above.
-You can also use `yy` to copy an entire line.
 
 --------------
 
@@ -305,25 +262,6 @@ file from the normal mode.
 Each time you hit `N` the previous matching pattern will be found and
 the cursor will move to that location.
 
-\
-**Example XII:** Find the pattern *badger* only if it is a whole word
-in *animals.txt* file from the normal mode.
-- Hit `ESC` to switch to normal mode
-- Type `/` first before the pattern to be searched
-- Type `\<badger\>` and hit `ENTER/RETURN`
-
-Since we are looking for a whole word, simply searching for "badger"
-with `/badger` will not be useful as it will find any pattern containing
-"badger" such as "honeybadger". To search whole words, we should use
-`\<pattern\>` where `\<` represents the beginning of the word, and
-`\>` represents the end of the word.
-
-\
-**Example XIII:** Find the next line containing *bear* pattern in
-*animals.txt* file from the command-line mode.
-- Hit `ESC` and type `:` to go to command-line mode
-- Type `/bear` and hit `ENTER/RETURN`
-
 #### 5. Text Substitution
 Many modern document and text editors provide functionality for finding
 and replacing strings. Vim is no exception and it offers many additional
@@ -348,16 +286,6 @@ vim animals.txt
 and hit `ENTER/RETURN`
 - Type `:` to start the command-line then type `wq` and hit `ENTER/RETURN`
 
-On the command-line mode we issued two distinct directives, `s/rabbit/squirrel`
-and `wq`. Instead of doing the substitution and write&quit in two steps
-we could have stack the commands using the pipe sign `|` which acts as
-an "and".
-
-- Type `:` to start the command-line mode and write `s/rabbit/squirrel/ | wq`
-and hit `ENTER/RETURN`
-- Typing `:s/rabbit/squirrel/ | w | q` and hitting `ENTER/RETURN` will
-accomplish the same task
-
 \
 **Example XV:** Replace the first instance of "rabbit" with "squirrel"
 in all the lines of *animals.txt* using substitute. Save and exit.
@@ -372,7 +300,6 @@ vim animals.txt
 
 `%` indicates that whole buffer (practically whole document) will be
 considered for substitution.
-<p>
 
 \
 **Example XVI:** Replace all instances of "fox" with "wolf"
@@ -389,106 +316,6 @@ vim animals.txt
 Here `g` is short for global and it is used to replace all instances of
 the pattern in a line.
 
-\
-**Example XVII:** Replace all instances of "wolf" with "fox" from line 20
- to 30 in *animals.txt* using substitute. Save and exit.
-
-- Open *animals.txt* using vim from the terminal
-```bash
-vim animals.txt
-```
-- Hit `ESC` and type `:` go to command-line mode
-- Write `20,30s/wolf/fox/g` and hit `ENTER/RETURN`
-- Hit `ESC` to switch to normal mode and type `ZZ`
-
-`20,30` before `s/wolf/fox/g` indicates the range of lines to be
-considered for substitution and it is inclusive.
-
-\
-**Example XVIII:** Replace all instances of "badger" with "Tasmanian devil"
-in all the line of *animals.txt* using substitute but require
-confirmation before the change. Save and exit. Make
-sure not to substitute honeybadger.
-
-- Open *animals.txt* using vim from the terminal
-```bash
-vim animals.txt
-```
-- Hit `ESC` and type `:` go to command-line mode
-- Write `%s/\<badger\>/Tasmanian devil/gc` and hit `ENTER/RETURN`
-- Hit `ESC` to switch to normal mode and type `ZZ`
-
-`\<badger\>` searchers for only the whole words exactly matching badger.
-`c` at the end is used for confirmation request.
-
-\
-**Example XIX:** Replace all instances of "Tasmanian devil" with "badger"
-in all the line of *animals.txt* using substitute. Make the search case
-insensitive. Save and exit.
-
-- Open *animals.txt* using vim from the terminal
-```bash
-vim animals.txt
-```
-- Hit `ESC` and type `:` go to command-line mode
-- Write `%s/tasmanian devil/badger/gi` and hit `ENTER/RETURN`
-- Hit `ESC` to switch to normal mode and type `ZZ` (i.e. `SHIFT+z+z`)
-
-`i` at the end is used to make the search case insensitive.
-
-#### 6. Global Operations
-The global command,`:g`, is used to execute an operation throughout
-the document.
-
-**Example XX:** Delete all the lines having the pattern "goat" from
-*animals.txt*. After completing the task, undo the change.
-- Hit `ESC` and type `:` go to command-line mode
-- Write `g/goat/d` and hit `ENTER/RETURN`. Can you find any lines with
-"goat" pattern?
-- Hit `ESC` then `u` to undo the deletion.
-The `d` in `g/goat/d` indicates a deletion operation. Thus the whole
-command means do the deletion for all lines that have "goat" pattern.
-
-\
-**Example XXI:** Delete all the lines that do not have the pattern
-"goat" from *animals.txt*. After completing the task, undo the change.
-- Hit `ESC` and type `:` go to command-line mode
-- Write `g!/goat/d` and hit `ENTER/RETURN`. Can you find any lines
-without "goat" pattern?
-- Hit `ESC` then `u` to undo the deletion.
-The exclamation mark, `!`, in `g!/goat/d` refers to **not**. Thus the whole
-command means do the deletion for all lines that do not have "goat" pattern.
-
---------------
-
-# Split Windows for Opening Multiple Files
-It is possible to open multiple files spreading horizontally or
-vertically in a single UI window. This can be achieved while you are
-starting the UI or from within the UI.
-
-**Example I:** Open the two files *animals.txt* and *editing.txt* in a
-split windows oriented horizontally, then quit all without saving.
-- Issue the following command on your terminal
-```bash
-vim -o animals.txt editing.txt
-```
-- Once the split windows are opened switch to command-line mode by
-typing `:`
-- Type `q!` and hit `ENTER/RETURN` to exit the pane you are on. Then repeat
-the same to quit the last file.
-- To quit from all panes instantaneously you could type `:qall!` and
-hit `ENTER/RETURN`
-
-\
-**Example II:** Open the two files *animals.txt* and *editing.txt* in a
-split windows oriented vertically, then quit all without saving.
-- Issue the following command on your terminal
-```bash
-vim -O animals.txt editing.txt
-```
-- Once the split windows are opened switch to command-line mode by
-typing `:`
-- Type `qall!` and hit `ENTER/RETURN`
 
 --------------
 

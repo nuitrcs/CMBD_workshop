@@ -10,3 +10,42 @@ Vim is rock stable and is continuously being developed to become even better. Am
     powerful search and replace
     integrates with many tools
 
+The Very Basics
+
+1. What is Vim?
+    - Vim stands for "**Vi Improved**". It's a modified clone of the
+    text editor "vi".
+    - Vim is included as "vi" with most UNIX systems and with Apple OS X.
+2. Why Vim?
+    - Vim is free and open source. It is also a charityware that gives
+    support to poor children in Uganda!
+    - Vim is available for many platforms. Vim has a graphic user
+    interface, with menus and support for the mouse, while it also
+    supports textmode in terminals, which is perfect for remote
+    access/administration (like Quest).
+    - Vim is perfect for programming. Vim supports all great features
+    for code editors: auto-completion, syntax highlighting, screen
+    split, and so on.
+    - Vim is highly configurable. With some extra plugins, it works
+    just like an IDE (Integrated Development Environment, such as
+    visual studio), but much faster!
+
+Different Modes in Vim
+
+One of the most important concepts in Vim is modes. This is the major
+difference between Vim and other text editors like Notepad in Windows
+and gedit in Linux. Here is a short overview of each mode available
+in vim:
+
+- Normal mode: For navigation and manipulation of text. This is the
+default mode when you start Vim. Press `ESC` to exit back to normal
+mode from other modes.
+- Insert mode: For inserting new text. Insert mode can be reached in
+several ways, e.g., pressing `i` when in normal mode.
+- Command-line mode: For entering editor commands, such as help, search,
+ save, quit. Press `:` when in normal mode to enter command-line mode.
+- Visual mode: For navigation and manipulation of text selections.
+This mode allows you to perform most normal mode commands, and a few extra
+others, on selected (i.e. highlighted) text. Press `v` when in normal
+mode to enter visual mode.
+
