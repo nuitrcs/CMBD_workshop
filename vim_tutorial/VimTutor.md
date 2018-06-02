@@ -463,11 +463,12 @@ vim -O ilikemyname.txt ilikemyname_bckp.txt
 #1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
 ```
 
-<details>
-  <summary>
-    **IV.11)** Exit from VIM without saving files
-  </summary>
-  ```bash
-  #1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
-  ```
-</details>
+**IV.11)** Exit from VIM without saving files
+<details><summary>Click me</summary>
+<p>
+
+#### Answer
+
+```bash
+#1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
+```
