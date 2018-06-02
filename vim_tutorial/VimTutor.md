@@ -457,7 +457,7 @@ side in one VIM window
 vim -O ilikemyname.txt ilikemyname_bckp.txt
 ```
 
-**IV.10)** Exit from VIM without saving files
+**IV.11)** Exit from VIM without saving files
 
 ```bash
 #1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
@@ -465,7 +465,9 @@ vim -O ilikemyname.txt ilikemyname_bckp.txt
 
 <details>
   <summary>
-    Show details
+    **IV.11)** Exit from VIM without saving files
   </summary>
-  Your markdown content here
+  ```bash
+  #1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
+  ```
 </details>
