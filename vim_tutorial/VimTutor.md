@@ -376,34 +376,57 @@ Interactive Online Learning:
 # VIM Text Editor Exercises
 
 **IV.01)** Open "ilikemyname.txt" using VIM editor.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 vim ilikemyname.txt
 ```
+</p>
+</details>
 
 **IV.02)** While you are viewing the file, set VIM to
 show line numbers.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #-- Go to the command-line mode (hit "esc" then ":") and write set nu, hit enter/return
 ```
+</p>
+</details>
 
 **IV.03)** Delete 783219th line.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #-- Go to the command-line mode (hit "esc" then ":")
 #1- write 783219 and hit enter/return OR write ?783219 and hit enter/return.
 #2- Hit d two times when the cursor is on line 783219
 ```
+</p>
+</details>
 
 **IV.04)** Undo your deletion.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #-- Hit "esc" to go to the normal mode and hit "u"
 ```
+</p>
+</details>
 
 **IV.05)** Only erase the number before YourName on line 783219.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #-- Two possible option to accomp:
 
@@ -414,11 +437,16 @@ show line numbers.
 
 #1- Hit "esc" and "6" and then "x" to erase 6 characters. There are several more ways.
 ```
+</p>
+</details>
 
 **IV.06)** Go to the last line of the file and enter the text "Last"
 before YourName. Then go to the first line of the file and enter the
 text "First" after YourName.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #-- Follow the steps below
 
@@ -429,39 +457,56 @@ text "First" after YourName.
 #5- Write "0", hit enter/return
 #6- Hit "i" to enter insert mode, move the cursor after YourName and type "First"
 ```
+</p>
+</details>
 
 **IV.07)** Save the file as *ilikemyname_bkcp.txt*
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #1- Hit "esc" and type ":w ilikemyname_bkcp.txt"
 ```
+</p>
+</details>
 
 **IV.08)** Replace all YourName pattern with your first name. Save the file
 and quit.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #1- Hit `ESC` and type `:` go to command-line mode
 #2- Write `%s/YourName/yourfirstname/` and hit `ENTER/RETURN`
 ```
+</p>
+</details>
 
 **IV.09)** Save the file and quit.
+<details><summary>Click me</summary>
+<p>
 
+#### Answer
 ```bash
 #1- Type `:` to start the command-line then type `x` and hit `ENTER/RETURN`
 ```
+</p>
+</details>
 
 **IV.10)** Compare *ilikemyname.txt* and *ilikemyname_bckp.txt* side by
 side in one VIM window
 
+<details><summary>Click me</summary>
+<p>
+
+#### Answer
 ```bash
 vim -O ilikemyname.txt ilikemyname_bckp.txt
 ```
-
-**IV.11)** Exit from VIM without saving files
-
-```bash
-#1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
-```
+</p>
+</details>
 
 **IV.11)** Exit from VIM without saving files
 <details><summary>Click me</summary>
@@ -472,3 +517,5 @@ vim -O ilikemyname.txt ilikemyname_bckp.txt
 ```bash
 #1- Type `:qall` and hit `ENTER/RETURN` to close both files and quit VIM
 ```
+</p>
+</details>
