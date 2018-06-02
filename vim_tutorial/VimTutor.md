@@ -386,6 +386,7 @@ vim ilikemyname.txt
 </p>
 </details>
 
+
 **IV.02)** While you are viewing the file, set VIM to
 show line numbers.
 <details><summary>Click me</summary>
@@ -397,6 +398,7 @@ show line numbers.
 ```
 </p>
 </details>
+
 
 **IV.03)** Delete 783219th line.
 <details><summary>Click me</summary>
@@ -411,6 +413,7 @@ show line numbers.
 </p>
 </details>
 
+
 **IV.04)** Undo your deletion.
 <details><summary>Click me</summary>
 <p>
@@ -421,6 +424,7 @@ show line numbers.
 ```
 </p>
 </details>
+
 
 **IV.05)** Only erase the number before YourName on line 783219.
 <details><summary>Click me</summary>
@@ -439,6 +443,7 @@ show line numbers.
 ```
 </p>
 </details>
+
 
 **IV.06)** Go to the last line of the file and enter the text "Last"
 before YourName. Then go to the first line of the file and enter the
@@ -460,6 +465,7 @@ text "First" after YourName.
 </p>
 </details>
 
+
 **IV.07)** Save the file as *ilikemyname_bkcp.txt*
 <details><summary>Click me</summary>
 <p>
@@ -470,6 +476,7 @@ text "First" after YourName.
 ```
 </p>
 </details>
+
 
 **IV.08)** Replace all YourName pattern with your first name. Save the file
 and quit.
@@ -484,6 +491,7 @@ and quit.
 </p>
 </details>
 
+
 **IV.09)** Save the file and quit.
 <details><summary>Click me</summary>
 <p>
@@ -494,6 +502,7 @@ and quit.
 ```
 </p>
 </details>
+
 
 **IV.10)** Compare *ilikemyname.txt* and *ilikemyname_bckp.txt* side by
 side in one VIM window
@@ -507,6 +516,7 @@ vim -O ilikemyname.txt ilikemyname_bckp.txt
 ```
 </p>
 </details>
+
 
 **IV.11)** Exit from VIM without saving files
 <details><summary>Click me</summary>
