@@ -18,7 +18,7 @@ in scripts.
 
 In programming, variables are information holders, or labels of information.
 You can access the same information through out your programme by calling
-its lable. You can also assign new information to the lables.
+its label. You can also assign new information to the labels.
 
 Let's start editing our first bash script.
 
@@ -26,11 +26,11 @@ Let's start editing our first bash script.
 vim mynumber.sh
 ```
 
-We will type the follwing code block in the script file to look at
+We will type the following code block in the script file to look at
 variable 'myfavnumber'.
 
 ```bash
-#!/bin/bash
+#!/bin/bash    # you may not need this line
 
 myfavnumber=34
 echo 'My favorite number is' $myfavnumber
@@ -46,7 +46,7 @@ bash code, you may see `${favnumber}` which is equivalent to `$favnumber`
 
 ## Conditionals
 
-Another important algorithmic construct is conditinonals. The basic
+Another important algorithmic construct is conditionals. The basic
 conditional statement is `if/then`. Apart from small syntax differences, the
 usage of `if/then` statement in bash scripts is same as other languages.
 Conditionals help you to execute commands only when certain conditions
@@ -101,6 +101,8 @@ Let's move to 'creatures' folder. We will work with the two files but let's
 first create backup copies.
 
 ```bash
+#!/bin/bash
+
 cd ../creautures
 pwd
 ls -al
@@ -112,21 +114,42 @@ When `cp` receives more than two inputs the last should be a directory for
 command will not work. We can use a loop to accomplish this task
 
 ```bash
-for filename in basilisk.dat unicorn.dat #hit enter#
-> do
->     cp $filename original-$filename
-> done
+#!/bin/bash
+
+for filename in basilisk.dat unicorn.dat
+    do
+        cp $filename original-$filename
+    done
 
 #OR
 
-for filename in basilisk.dat unicorn.dat; do cp $filename original-$filename; done
+for filename in basilisk.dat unicorn.dat
+    do
+        cp $filename original-$filename
+    done
 
 #OR
 
-for x in basilisk.dat unicorn.dat; do cp $x original-$x; done
-
-for color in basilisk.dat unicorn.dat; do cp $color original-$color; done
+for x in basilisk.dat unicorn.dat
+    do
+        cp $x original-$x
+    done
 ```
+
+We can write the same `for` loop on the command line
+```bash
+for x in basilisk.dat unicorn.dat; do cp $x original-$x; done
+```
+
+If writing everything on the same line is becomes convoluted then we can
+hit ENTER/RETURN to go to another line after each complete code block
+```bash
+for x in basilisk.dat unicorn.dat  #hit enter
+>do                                #hit enter
+>cp $x original-$x                 #hit enter
+>done                              #hit enter
+```
+
 
 `$` symbol tells the shell interpreter to treat *filename* as a **variable** and 
 `$filename` returns the value of the variable which becomes *basilisk.dat* and
@@ -134,47 +157,58 @@ for color in basilisk.dat unicorn.dat; do cp $color original-$color; done
 is equivalent to `$filename`
 
 ```bash
+#!/bin/bash
+
 echo *.dat
 
-for filename in *.dat #hit enter#
-> do
->     echo $filename
->     head -n 100 $filename | tail -n 5  #this selects the lines 96-100
-> done
+for filename in *.dat
+    do
+        echo $filename
+        head -n 100 $filename | tail -n 5  #this selects the lines 96-100
+    done
  ```
 
 We can put an empty line before each filename when printing for a better
 look
 
 ```bash
+#!/bin/bash
+
 echo *.dat
 
-for filename in *.dat #hit enter#
-> do
-> echo ""
-> echo $filename
-> head -n 100 $filename | tail -n 5  #this selects the lines 96-100
-> done
+for filename in *.dat
+    do
+        echo ""
+        echo $filename
+        head -n 100 $filename | tail -n 5  #this selects the lines 96-100
+    done
  ```
 
 Say you have white spaces in your file names:
 
 ```bash
+#!/bin/bash
+
 cp basilisk.dat 'green snake.dat'
 cp unicorn.dat 'white horse.dat'
-for filename in green snake.dat white horse.dat #hit enter#
-> do
->     echo $filename
->     head -n 100 $filename | tail -n 20  #this selects the lines 81-100 
-> done
 
-#This should be
+for filename in green snake.dat white horse.dat #hit enter#
+    do
+        echo $filename
+        head -n 100 $filename | tail -n 20  #this selects the lines 81-100
+    done
+```
+
+This code should be as below:
+
+```bash
+#!/bin/bash
 
 for filename in 'green snake.dat' 'white horse.dat' #hit enter#
-> do
->     echo $filename
->     head -n 100 $filename | tail -n 20  #this selects the lines 81-100 
-> done
+    do
+        echo $filename
+        head -n 100 $filename | tail -n 20  #this selects the lines 81-100
+    done
  ```
 
 Let's go back to our molecules folder do more looping
@@ -186,7 +220,14 @@ cd ../molecules
 Say we want to write all molecules in one file:
 
 ```bash
-for molecule in *.pdb; do echo $molecule; cat $molecule > all_molecules.dat; done
+#!/bin/bash
+
+for molecule in *.pdb
+    do
+        echo $molecule
+        cat $molecule > all_molecules.dat
+    done
+
 cat all_molecules.dat
 ```
 
@@ -195,27 +236,49 @@ of the loop we overwrite the previous file. Instead we should have used
 append `>>`
 
 ```bash
+#!/bin/bash
+
 rm all_molecules.dat
-for molecule in *.pdb; do echo $molecule; cat $molecule >> all_molecules.dat; done
+
+for molecule in *.pdb
+    do
+        echo $molecule
+        cat $molecule >> all_molecules.dat
+    done
 ```
 
-What if we only want to write molecules if their names start with p
+What if we only want to write molecules if their names start with "p"
 
 ```bash
-for molecule in p*; do echo $molecule; cat $molecule >> p_molecules.dat; done
+#!/bin/bash
+
+for molecule in p*
+    do
+        echo $molecule
+        cat $molecule >> p_molecules.dat
+    done
 ```
 
 What if we only want to write molecules if their names include c
 
 ```bash
-for molecule in *c*; do echo $molecule; cat $molecule >> c_molecules.dat; done
+#!/bin/bash
+
+for molecule in *c*
+    do
+        echo $molecule
+        cat $molecule >> c_molecules.dat
+    done
 ```
 
 We can construct nested loops for instance creating a grid of folders
 for organizing our data
 
 ```bash
-for temperature in 10 20 ; do 
+#!/bin/bash
+
+for temperature in 10 20
+    do
 > for molecule in propane pentane; do mkdir $molecule-$temperature; done
 > done
 
@@ -249,7 +312,7 @@ echo $counter
 ```
 
 
-# SHELL SCRIPTS
+# Script Arguments
 
 Let's go to molecules folder and start writing a script
  
@@ -274,7 +337,7 @@ bash middle.sh
 ```
 
 Your input in the `head` command was octane.pdb.
-Instead of hardcoding the file name in the script
+Instead of hard coding the file name in the script
 we can make it a variable. Let's edit our script
 with vim again
 
@@ -461,7 +524,6 @@ the interpreter (i.e. bash)
 chmod u+x myscript.sh
 ./myscript.sh *.pdb
 ```
-
 
 Let's do some scripting with random numbers. 
 Write a bash script to generate 1000 random numbers 
