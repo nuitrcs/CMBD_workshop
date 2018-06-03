@@ -277,37 +277,55 @@ for organizing our data
 ```bash
 #!/bin/bash
 
-for temperature in 10 20
-    do
-> for molecule in propane pentane; do mkdir $molecule-$temperature; done
-> done
+for temperature in 10 20; do
+    for molecule in propane pentane; do
+        mkdir $molecule-$temperature
+    done
+done
 
 #OR 
 
-for temperature in 10 20 ; do 
-> for molecule in propane pentane; do mkdir "$molecule-$temperature"; done
-> done
+for temperature in 10 20; do
+    for molecule in propane pentane; do
+        mkdir "$molecule-$temperature"
+    done
+done
 
 #BUT NOT SAME
 
-for temperature in 10 20 ; do 
-> for molecule in propane pentane; do mkdir '$molecule-$temperature'; done
-> done
+for temperature in 10 20; do
+    for molecule in propane pentane; do
+        mkdir '$molecule-$temperature'
+    done
+done
 ```
 
 There are other loop constructions such as `while` and `until`.
 
 ```bash
+#!/bin/bash
+
 counter=0
-while [ $counter -lt 10 ]; do echo $counter; let counter=counter+1; done
+while [ $counter -lt 10 ]
+    do
+        echo $counter
+        let counter=counter+1
+    done
  ```
 
 `while` iterates as long as the condition is true where as `until` stops
 the loop when the condition is true
  
 ```bash
+#!/bin/bash
+
 counter=0
-until [ $counter -ge 10 ]; do echo $counter; let counter=counter+1; done
+until [ $counter -ge 10 ]
+    do
+        echo $counter
+        let counter=counter+1
+    done
+
 echo $counter
 ```
 
@@ -349,6 +367,8 @@ hit **i** (inset mode) and then we write the
 following
 
 ```bash
+#!/usr/bin/env bash
+
 # head -n 15 octane.pdb | tail -n 5
 head -n 15 "$1" | tail -n 5
 ```
@@ -379,6 +399,8 @@ hit **i** (inset mode) and then we write the
 following
 
 ```bash
+#!/usr/bin/env bash
+
 # head -n 15 octane.pdb | tail -n 5
 head -n "$2" "$1" | tail -n "$3"
 ```
@@ -404,9 +426,12 @@ We will repeat the routine to insert save and
 quit in vim.
 
 ```bash
+#!/usr/bin/env bash
+
 # Select lines from the middle of a file.
 # Usage: bash middle.sh filename end_line num_lines
 # head -n 15 octane.pdb | tail -n 5
+
 head -n "$2" "$1" | tail -n "$3"
 ```
 
@@ -448,10 +473,11 @@ instead of using `"$1"`, `"$2"` etc., we could use
 vim sorted.sh
 ```
 
-Repeat the routine to insert save and
-quit in vim.
+Repeat the routine to insert save and quit in vim.
 
 ```bash
+#!/usr/bin/env bash
+
 wc -l "$@" | sort -n
 ```
 
@@ -473,13 +499,13 @@ A short cut to save some useful commands is to redirect
 the current history to a file which becomes a script
 
 ```bash
+#!/usr/bin/env bash
+
 history | tail -n 5 > redo-commands.sh
 ```
 
-As you see it is natural to stack more than one command
-in a script. So let's write a script that takes any
-number of files (i.e. *.pdb* files) in molecules folder as
-input and
+Let's write a script that takes any number of files (i.e. *.pdb* files)
+in molecules folder as input and
 <br>
 1. Prints the file names that are provided 
 2. Prints out 4<sup>th</sup> line from each 
@@ -571,3 +597,41 @@ done
 ls -al | grep folder_
 rm -Rf folder_*
 ```
+
+# Bash Scripting Exercise
+
+**i-** Write a bash script that takes an integer and your first name as
+inputs:
+- If the input integer is larger than 1000, it will print out “I cannot
+write <yourfirstname> `integer` times”
+- If the input integer is less than 100, it will print out “Don’t you
+like your name, `yourfirstname`?”
+- If the input integer is between 100 and 1000, it will write your name
+integer times to a file called *myname.txt*. Each name entry should be
+on a single line in the output file.
+<details><summary>Click me</summary>
+<p>
+
+#### Answer
+```bash
+#!/usr/bin/env bash
+
+NumName="$1"
+Name="$2"
+
+if [ $NumName -gt 1000 ]; then
+    echo "I cannot write ${Name} ${NumName} times"
+elif [ $NumName -lt 100 ]; then
+    echo "Don’t you like your name, ${Name}?”"
+else
+    for i in `seq 1 ${Name}`
+        do
+            echo $Name >> myname.txt
+        done
+fi
+```
+</p>
+</details>
+<p></p>
+
+
