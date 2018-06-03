@@ -40,7 +40,7 @@ echo 'I changed my mind, it is' $myfavnumber
 ```
 
 `$` symbol tells the shell interpreter to treat *myfavnumber* as
-a **variable** and look what is inside this lable. So `$favnumber`
+a **variable** and look what is inside this label. So `$favnumber`
 returns the value of the variable which becomes 34 and then 65. In some
 bash code, you may see `${favnumber}` which is equivalent to `$favnumber`
 
@@ -66,18 +66,19 @@ fi
 `if/then` statement can be extended to `if/then/else` or `if/then/elif/else`
 to test more conditions.
 
-Let's move to *data* folder and create decision tree about your
-vegetables when there are rabbits around.
+Let's work on animals.txt in *bash_scripting/animal_control* folder and
+create decision tree about your vegetables when there are rabbits
+around. The script we will write is named as *nobunnies.sh*
 
 ```bash
-vim nobunnys.sh
+vim nobunnies.sh
 ```
 
 
 ```bash
 #!/bin/bash
 
-cd data
+cd ./bash_scripting/animal_control
 
 nrabbits=`cat animals.txt | grep rabbit | wc -l`
 # nrabbits=$(cat animals.txt | grep rabbit | wc -l)
@@ -94,10 +95,10 @@ echo "$nrabbits"
 ```
 
 
-## LOOPS
+## Loops
 
 Loops will make your life very easy for repetitive tasks and automation. 
-Let's move to 'creatures' folder. We will work with the two files but let's 
+Let's move to 'bash_scripting/creatures' folder. We will work with the two files but let's
 first create backup copies.
 
 ```bash
@@ -211,7 +212,7 @@ for filename in 'green snake.dat' 'white horse.dat' #hit enter#
     done
  ```
 
-Let's go back to our molecules folder do more looping
+Let's go back to our "bash_scripting/molecules" folder do more looping
 
 ```bash
 cd ../molecules
@@ -624,7 +625,7 @@ if [ $NumName -gt 1000 ]; then
 elif [ $NumName -lt 100 ]; then
     echo "Don’t you like your name, ${Name}?”"
 else
-    for i in `seq 1 ${Name}`
+    for i in `seq 1 ${NumName}`
         do
             echo $Name >> myname.txt
         done
