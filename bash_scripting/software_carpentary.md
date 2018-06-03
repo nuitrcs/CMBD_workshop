@@ -624,7 +624,7 @@ if [ $NumName -gt 1000 ]; then
 elif [ $NumName -lt 100 ]; then
     echo "Don’t you like your name, ${Name}?”"
 else
-    for i in `seq 1 ${Name}`
+    for i in `seq 1 ${NumName}`
         do
             echo $Name >> myname.txt
         done
