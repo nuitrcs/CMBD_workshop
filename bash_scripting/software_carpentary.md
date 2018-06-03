@@ -603,9 +603,9 @@ rm -Rf folder_*
 **i-** Write a bash script that takes an integer and your first name as
 inputs:
 - If the input integer is larger than 1000, it will print out “I cannot
-write <yourfirstname> `integer` times”
+write [yourfirstname] [integer] times”
 - If the input integer is less than 100, it will print out “Don’t you
-like your name, `yourfirstname`?”
+like your name, [yourfirstname]?”
 - If the input integer is between 100 and 1000, it will write your name
 integer times to a file called *myname.txt*. Each name entry should be
 on a single line in the output file.
