@@ -331,7 +331,7 @@ echo $counter
 ```
 
 
-# Script Arguments
+## Script Arguments
 
 Let's go to molecules folder and start writing a script
  
@@ -599,7 +599,7 @@ ls -al | grep folder_
 rm -Rf folder_*
 ```
 
-# Bash Scripting Exercise
+# Bash Scripting Exercises
 
 **i-** Write a bash script that takes an integer and your first name as
 inputs:
@@ -610,7 +610,7 @@ like your name, [yourfirstname]?”
 - If the input integer is between 100 and 1000, it will write your name
 integer times to a file called *myname.txt*. Each name entry should be
 on a single line in the output file.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -635,4 +635,132 @@ fi
 </details>
 <p></p>
 
+**ii-** Create a backup for your script then modify the original to
+read your first name from an input file named as *input_myname.txt*.
+The integer should still be provided as an argument on the command line.
 
+Hint: You can assign the contents of a file to a variable using
+command below:
+```bash
+variable=`cat input_myname.txt`
+```
+
+<details><summary>Click me for answer</summary>
+<p>
+
+#### Answer
+```bash
+#!/usr/bin/env bash
+
+NumName="$1"
+Name=`cat input_myname.txt`
+
+if [ $NumName -gt 1000 ]; then
+    echo "I cannot write ${Name} ${NumName} times"
+elif [ $NumName -lt 100 ]; then
+    echo "Don’t you like your name, ${Name}?”"
+else
+    for i in `seq 1 ${NumName}`
+        do
+            echo $Name >> myname.txt
+        done
+fi
+```
+</p>
+</details>
+<p></p>
+
+# Quest Job Submission Exercises
+
+**i-** Run the script that you have written in the first exercise of
+bash scripting by submitting a job to Quest. Check if the job
+appropriately produced output file *myname.txt*, log and error files.
+<details><summary>Click me for answer</summary>
+<p>
+
+#### Answer
+
+```bash
+#!/bin/bash
+#MSUB -A w10001
+#MSUB -q admin
+#MSUB -l nodes=1:ppn=1
+#MSUB -l walltime=00:10:00
+#MSUB -N sample_job
+#MSUB -o r.outlog
+#MSUB -e r.errlog
+
+cd $PBS_O_WORKDIR
+
+bash myscript.sh 300 yourfirstname ## Replace yourfirstname with your
+                                   ## actual name
+```
+</p>
+</details>
+<p></p>
+
+**ii-** Run the script that you have written in the second exercise of
+bash scripting by submitting a job to Quest. Check if the job
+appropriately produced output file *myname.txt*, log and error files.
+<details><summary>Click me for answer</summary>
+<p>
+
+#### Answer
+
+```bash
+#!/bin/bash
+#MSUB -A w10001
+#MSUB -q admin
+#MSUB -l nodes=1:ppn=1
+#MSUB -l walltime=00:10:00
+#MSUB -N sample_job
+#MSUB -o r.outlog
+#MSUB -e r.errlog
+
+cd $PBS_O_WORKDIR
+
+bash myscript.sh 300  ## Replace myscript.sh with your actual
+                      ## script file name
+```
+</p>
+</details>
+<p></p>
+
+**iii-** Submit a job that prints out help information for R in your
+log file.
+
+Hint: You need to load R module
+Hint: You can see help information for R with the command below:
+
+```bash
+R --help
+```
+
+Extra credit: You can redirect the help information to file of your
+choice instead of the log file.
+
+
+<details><summary>Click me for answer</summary>
+<p>
+
+#### Answer
+
+```bash
+#!/bin/bash
+#MSUB -A w10001
+#MSUB -q admin
+#MSUB -l nodes=1:ppn=1
+#MSUB -l walltime=00:10:00
+#MSUB -N sample_job
+#MSUB -o r.outlog
+#MSUB -e r.errlog
+
+cd $PBS_O_WORKDIR
+module load R
+
+R --help             ## Help info will be written to log file
+#R --help > r.help   ## Redirect the help info to r.help file
+```
+</p>
+</details>
+<p></p>

@@ -376,7 +376,7 @@ Interactive Online Learning:
 # VIM Text Editor Exercises
 
 **i-** Open "ilikemyname.txt" using VIM editor.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -389,7 +389,7 @@ vim ilikemyname.txt
 
 **ii-** While you are viewing the file, set VIM to
 show line numbers.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -401,7 +401,7 @@ show line numbers.
 <p></p>
 
 **iii-** Delete 783219th line.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -415,7 +415,7 @@ show line numbers.
 <p></p>
 
 **iv-** Undo your deletion.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -427,7 +427,7 @@ show line numbers.
 <p></p>
 
 **v-** Only erase the number before YourName on line 783219.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -448,7 +448,7 @@ show line numbers.
 **vi-** Go to the last line of the file and enter the text "Last"
 before YourName. Then go to the first line of the file and enter the
 text "First" after YourName.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -467,7 +467,7 @@ text "First" after YourName.
 <p></p>
 
 **vii-** Save the file as *ilikemyname_bkcp.txt*
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -480,7 +480,7 @@ text "First" after YourName.
 
 **viii-** Replace all YourName pattern with your first name. Save the file
 and quit.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -493,7 +493,7 @@ and quit.
 <p></p>
 
 **ix-** Save the file and quit.
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -507,7 +507,7 @@ and quit.
 **x-** Compare *ilikemyname.txt* and *ilikemyname_bckp.txt* side by
 side in one VIM window
 
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
@@ -520,7 +520,7 @@ vim -O ilikemyname.txt ilikemyname_bckp.txt
 
 
 **xi-** Exit from VIM without saving files
-<details><summary>Click me</summary>
+<details><summary>Click me for answer</summary>
 <p>
 
 #### Answer
