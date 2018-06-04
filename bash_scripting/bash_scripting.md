@@ -124,10 +124,7 @@ for filename in basilisk.dat unicorn.dat
 
 #OR
 
-for filename in basilisk.dat unicorn.dat
-    do
-        cp $filename original-$filename
-    done
+for filename in basilisk.dat unicorn.dat; do cp $filename original-$filename; done
 
 #OR
 
